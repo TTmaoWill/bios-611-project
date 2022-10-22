@@ -1,0 +1,8 @@
+---
+title: "Final project"
+author: "Will Tang"
+---
+
+![PCA](figures/pca.png)      
+
+![tSNE](figures/tsne.png)
