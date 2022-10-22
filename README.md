@@ -22,6 +22,8 @@ make report.pdf
 ```
 
 Alternatively run codes in Rstudio:
+```
 docker run -v $(pwd):/home/rstudio/project\
        --user="rstudio" --workdir="/home/rstudio/proj" -t chenweit611\
        make report.pdf
+```
