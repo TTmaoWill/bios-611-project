@@ -1,3 +1,27 @@
-Dataset: https://www.kaggle.com/code/aeryan/spotify-music-analysis/data
-This dataset contains Spotify hit songs, including their basic information as well as some quantified judgements of the songs including loudness, dancibility, etc.
-As a music fan, by analyzing this dataset, I would like to see if there is in general shared traits among songs in this list based on the numerical measurement included. I am also interested in viewing the distribution of these songs' features.
+Getting Started
+===============
+
+Build the docker image by typing:
+```
+docker build . -t chenweit611
+```
+
+And then start an RStudio by typing:
+
+```
+docker run -v $(pwd):/home/rstudio/proj -p 8787:8787 -e PASSWORD=<some-password>
+```
+
+Once the Rstudio is running connect to it by visiting
+https://localhost:8787 in your browser. 
+
+To build the final report, visit the terminal in RStudio and type
+
+```
+make report.pdf
+```
+
+Alternatively run codes in Rstudio:
+docker run -v $(pwd):/home/rstudio/project\
+       --user="rstudio" --workdir="/home/rstudio/proj" -t chenweit611\
+       make report.pdf
