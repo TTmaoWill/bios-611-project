@@ -11,5 +11,6 @@ tsne_instance <- manifold$TSNE(n_components=as.integer(2));
 results <- tsne_instance$fit_transform(df %>% select(-song_title, -artist) %>% as.matrix()) %>%
   as_tibble();
 
+png("figures/tsne.png")
 ggplot(results, aes(V1, V2)) + geom_point()
-ggsave("figures/tsne.png")
+dev.off()

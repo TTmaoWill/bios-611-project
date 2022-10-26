@@ -18,12 +18,12 @@ https://localhost:8787 in your browser.
 To build the final report, visit the terminal in RStudio and type
 
 ```
-make report.pdf
+cd proj ; make report.pdf
 ```
 
 Alternatively run codes in Rstudio:
 ```
 docker run -v $(pwd):/home/rstudio/proj\
        --user="rstudio" --workdir="/home/rstudio/proj" -t chenweit611\
-       make report.pdf
+       cd proj ; make report.pdf
 ```

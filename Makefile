@@ -27,5 +27,5 @@ figures/tsne.png: .created-dirs make_tsne.R derived_data/processed.csv
 	Rscript make_tsne.R
 
 # Produce the final report
-report.pdf: figures/pca.png figures/demo-projection.png figures/tsne.png report.Rmd
+report.pdf: figures/pca.png figures/tsne.png report.Rmd
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"
