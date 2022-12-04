@@ -18,6 +18,10 @@ clean:
 derived_data/processed.csv: .created-dirs preprocess.R source_data/data.csv
 	Rscript preprocess.R
 
+# Draw the histograms
+figures/hists.png: .created-dirs hists.R derived_data/processed.csv
+	Rscript hists.R
+
 # Draw a PCA plot of PC1 and PC2
 figures/pca.png: .created-dirs make_pca.R derived_data/processed.csv
 	Rscript make_pca.R
@@ -26,6 +30,10 @@ figures/pca.png: .created-dirs make_pca.R derived_data/processed.csv
 figures/tsne.png: .created-dirs make_tsne.R derived_data/processed.csv
 	Rscript make_tsne.R
 
+# Draw the ROC curve plot
+figures/roc.png: .created-dirs logit_reg_roc.R derived_data/processed.csv
+	Rscript logit_reg_roc.R
+
 # Produce the final report
-report.pdf: figures/pca.png figures/tsne.png report.Rmd
+report.pdf: figures/hists.png figures/pca.png figures/tsne.png figures/roc.png report.Rmd
 	R -e "rmarkdown::render(\"report.Rmd\", output_format=\"pdf_document\")"

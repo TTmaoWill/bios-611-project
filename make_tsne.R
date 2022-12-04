@@ -8,7 +8,7 @@ use_python("/usr/bin/python3");
 manifold <- import("sklearn.manifold");
 
 tsne_instance <- manifold$TSNE(n_components=as.integer(2));
-results <- tsne_instance$fit_transform(df %>% select(-song_title, -artist) %>% as.matrix()) %>%
+results <- tsne_instance$fit_transform(df %>% select(-song_title, -artist, -target) %>% as.matrix()) %>%
   as_tibble();
 
 png("figures/tsne.png")

@@ -1,8 +1,52 @@
 ---
-title: "Final project"
+title: "Predicting Spotify music preference with AdaBoost"
 author: "Will Tang"
+output: pdf_document
 ---
 
-![PCA](figures/pca.png)      
+# Introduction
+
+This study focuses on a data set of Spotify's music, including song information, numerical-value characteristics of music works as features, and a binary variable indicating whether the author likes the song or not. For the inherent music features, we directly visualized each of their distribution via histograms. To identify any possible inter-feature relationships, we applied dimensional reduction followed by 2-D visualization. Lastly we built up an AdaBoost model for predictions of "like or not" binary outcome with numerical features of music.
+
+# Data analysis
+
+## Data summary
+
+Our data set of interest ([1](#citeproc_bib_item_1)) includes 2017 rows (songs) and 16 columns: two of them contain the name of the song and artists; the rest 14 numerical columns are composed of two parts: 13 of them are quantifeid features of the music, continuous or binary, provided by Spotify ([2](#citeproc_bib_item_2)), will be used as the observations for our prediction model; one column contains the binary response of the author to the music, 1 indicating "I like the song" while 0 indicating not, which will be used as labels. We used histograms to visualize the distributions of these features (Figure 1). What is worth noting is that the "target" (label)have approximately identical number of the responses, indicating that we won't have an unbalanced class which is somewhat problematic for a classification model.
+
+![Histograms of numerical features. ](figures/hists.png)
+
+## Dimentional reduction and Visualization
+
+Before the prediction, we would like to straightforwardly investigate if there exist any correlations between the music samples based on their feature values. Thus we used two different dimensionality reduction methods, PCA (Figure 2) and tSNE (Figure 3) ([3](#citeproc_bib_item_3)), and plotted their top 2 factors within 2-D coordinates. Neither of the figures reveal apprent trait among samples such as clusters, skewness, etc.
+
+
+![PCA](figures/pca.png)
 
 ![tSNE](figures/tsne.png)
+
+## AdaBoost
+
+We then fitted an AdaBoost model, with 70% of the randomly sampled rows as the training set, and the rest 30% as the testing set. To evaluate our model perfomance, we selected different thresholds for positive class, from 0 to 1, calculated the corresponding True Positive and True Negative rates, and drew the following ROC curve. (Figure 4) The curve for our model is clearly above the 45 degree line, with cover area greater than 0.5. This indicates that our AdaBoost model is plausible in predicting the author's preference on the 2017 songs based on their musical properties.
+
+![ROC curve](figures/roc.png)
+
+# Conclusion
+
+This mini-project explores the potential of machine-learning model. While decision of liking a song or not seems to be completely arbitrary, we might have been influenced by implicit disciplines. For example, some people will never like over-loudy music, while others would prefer music of major mode over those of minor mode. The AdaBoost, nevertheless, is able the capture this author's music taste only given an small number of his labelled choice. With millions of gigabytes of user preference, more advanced Deep-learning models and computaional force, there is no wonder the recommendations from Spotify can be so "intelligent and precise".
+
+# Reference {#ref}
+
+::: {#citeproc_bib_item_1}
+GEORGEMCINTIRE (2017). *[Spotify Song Attributes]* (<https://www.kaggle.com/datasets/geomack/spotifyclassification>)
+:::
+
+::: {#citeproc_bib_item_2}
+Spotify. *[Get Track's Audio Features]* (<https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features>)
+:::
+
+::: {#citeproc_bib_item_3}
+Vincent-Toups (2022). *[datasci611]* (<https://github.com/Vincent-Toups/datasci611>)
+:::
+
+
